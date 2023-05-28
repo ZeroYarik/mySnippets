@@ -32,9 +32,13 @@ def add_snippet(request):
 def snippets_page(request):
     snippets = Snippet.objects.all()
 
+    sort = request.GET.get('sort')
+    if sort:
+        snippets = snippets.order_by(sort)
     context = {
         'pagename': 'Просмотр сниппетов',
-        "snippets": snippets
+        "snippets": snippets,
+        "sort": sort
     }
     return render(request, 'pages/view_snippets.html', context)
 

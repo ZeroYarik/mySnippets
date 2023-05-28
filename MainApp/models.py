@@ -23,3 +23,6 @@ class Snippet(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE,
                              blank=True, null=True)
     private = models.BooleanField(default=True)
+
+    def __repr__(self):
+        return f"Snippet {self.name} | {self.user}"
